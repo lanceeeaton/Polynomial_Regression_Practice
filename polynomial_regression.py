@@ -20,13 +20,25 @@ dataset = pd.read_csv('Position_Salaries.csv')
 #%% [markdown]
 # ## Let's see how Position Level relates to Salary.
 #%%
-salaries = plt.scatter(dataset['Level'],dataset['Salary'])
-plt.title('Salary by Position level')
-plt.xlabel('Position level')
-plt.ylabel('Salary')
-plt.legend((salaries,),('Salaries',),loc='upper left', fontsize=12)
-plt.plot()
-           
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+salaries = ax.scatter(dataset['Level'],dataset['Salary'],color='red')
+ax.set_facecolor('white')
+ax.set_title('Salary by Position level',color='black')
+ax.set_xlabel('Position level',color='black')
+ax.set_ylabel('Salary',color='black')
+
+ax.spines['bottom'].set_color('black')
+ax.spines['top'].set_color('black')
+ax.spines['right'].set_color('black')
+ax.spines['left'].set_color('black')
+
+ax.tick_params(axis='x', colors='black')
+ax.tick_params(axis='y', colors='black')
+plt.legend((salaries,),('Salaries',),facecolor='grey',loc='upper left', fontsize=12)
+plt.show()
+
 #%% [markdown]
 # We now can see that polynomial regression should be the right choice for a regression model.
 #%% [markdown]
@@ -62,13 +74,28 @@ linear_regressor.fit(X, y)
 # ## Let's see how our models predictions compare to the actual salaries.
 #%%
 predictions = linear_regressor.predict(X)
-actual = plt.scatter(X, y, color = 'red')
-pred = plt.plot(X, predictions, color = 'blue')
-plt.title('Linear Regression Predictions vs Actual')
-plt.xlabel('Position level')
-plt.ylabel('Salary')
-plt.legend((actual,pred[0]),('Actual','Predictions'),loc='upper left', fontsize=12)
-plt.plot()
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+actual = ax.scatter(X, y, color = 'red')
+pred = ax.plot(X, predictions, color = 'blue')
+
+ax.set_title('Linear Regression Predictions vs Actual',color='black')
+ax.set_facecolor('white')
+ax.set_xlabel('Position level',color='black')
+ax.set_ylabel('Salary',color='black')
+
+ax.spines['bottom'].set_color('black')
+ax.spines['top'].set_color('black')
+ax.spines['right'].set_color('black')
+ax.spines['left'].set_color('black')
+
+ax.tick_params(axis='x', colors='black')
+ax.tick_params(axis='y', colors='black')
+
+ax.legend((actual,pred[0]),('Actual','Predictions'),facecolor='grey',loc='upper left', fontsize=12)
+plt.show()
 
 #%% [markdown]
 # We can see that our basic linear regression model does not do a very good job of predicting salaries.
@@ -111,14 +138,29 @@ linear_regressor_poly.fit(X_poly, y)
 # ## Let's see if this model does any better than our first.
 #%%
 predictions = linear_regressor_poly.predict(X_poly)
-actual = plt.scatter(X, y, color = 'red')
-pred = plt.plot(X, predictions, color = 'blue')
-plt.title('Polynomial Regression Predictions vs Actual')
-plt.xlabel('Position level')
-plt.ylabel('Salary')
-plt.legend((actual,pred[0]),('Actual','Predictions'),loc='upper left', fontsize=12)
-plt.plot()
 
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+actual = ax.scatter(X, y, color = 'red')
+pred = ax.plot(X, predictions, color = 'blue')
+
+ax.set_title('Polynomial Regression Predictions vs Actual',color='black')
+ax.set_facecolor('white')
+
+ax.set_xlabel('Position level',color='black')
+ax.set_ylabel('Salary',color='black')
+
+ax.spines['bottom'].set_color('black')
+ax.spines['top'].set_color('black')
+ax.spines['right'].set_color('black')
+ax.spines['left'].set_color('black')
+
+ax.tick_params(axis='x', colors='black')
+ax.tick_params(axis='y', colors='black')
+
+ax.legend((actual,pred[0]),('Actual','Predictions'),facecolor='grey',loc='upper left', fontsize=12)
+plt.show()
 #%% [markdown]
 # We can see that our polynomial regression model does a much better job.
 
